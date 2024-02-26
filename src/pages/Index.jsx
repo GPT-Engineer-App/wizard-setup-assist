@@ -1,9 +1,11 @@
-import React from "react";
-import { Box, Container, Heading, Select, Text, FormLabel, Input, Button, CheckboxGroup, Checkbox, VStack, HStack, Tooltip, IconButton, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Textarea } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Container, Heading, Text, FormLabel, Button, CheckboxGroup, Checkbox, VStack, HStack, Tooltip, IconButton, Slider, SliderTrack, SliderFilledTrack, SliderThumb, Textarea, SimpleGrid } from "@chakra-ui/react";
 import { FaStethoscope } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 
 const Index = () => {
+  const [selectedDomain, setSelectedDomain] = useState(null);
+  const [selectedDataMethod, setSelectedDataMethod] = useState(null);
   return (
     <Container maxW="container.xl">
       <Box boxShadow="md" p={5} mt={5} borderRadius="md" bg="white">
@@ -14,12 +16,13 @@ const Index = () => {
           {/* Step 1: Selecting the Domain */}
           <Box>
             <FormLabel htmlFor="domain">Step 1: Selecting the Domain</FormLabel>
-            <Select id="domain" placeholder="Select domain">
-              <option value="healthtech">Healthtech</option>
-              <option value="banking">Banking</option>
-              <option value="retail">Retail</option>
-              {/* More options can be added here */}
-            </Select>
+            <SimpleGrid columns={3} spacing={5}>
+              {["healthtech", "banking", "retail"].map((domain) => (
+                <Box key={domain} borderWidth="1px" borderRadius="md" p={5} boxShadow="md" bg={selectedDomain === domain ? "blue.100" : "white"} onClick={() => setSelectedDomain(domain)} cursor="pointer">
+                  <Text textAlign="center">{domain.charAt(0).toUpperCase() + domain.slice(1)}</Text>
+                </Box>
+              ))}
+            </SimpleGrid>
           </Box>
 
           {/* Step 2: Defining the Primary Task */}
@@ -31,11 +34,13 @@ const Index = () => {
           {/* Step 3: Data Specification */}
           <Box>
             <FormLabel htmlFor="data">Step 3: Data Specification</FormLabel>
-            <Select id="data" placeholder="Select data input method">
-              <option value="upload">Upload Dataset</option>
-              <option value="connect">Connect to Data Source</option>
-              <option value="synthetic">Use Synthetic Data</option>
-            </Select>
+            <SimpleGrid columns={3} spacing={5}>
+              {["upload", "connect", "synthetic"].map((method) => (
+                <Box key={method} borderWidth="1px" borderRadius="md" p={5} boxShadow="md" bg={selectedDataMethod === method ? "green.100" : "white"} onClick={() => setSelectedDataMethod(method)} cursor="pointer">
+                  <Text textAlign="center">{method.charAt(0).toUpperCase() + method.slice(1)} Dataset</Text>
+                </Box>
+              ))}
+            </SimpleGrid>
             {/* Additional form fields for connection details would be conditionally rendered based on the selection */}
           </Box>
 
