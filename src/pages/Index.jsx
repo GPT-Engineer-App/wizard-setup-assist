@@ -16,7 +16,7 @@ const Index = () => {
           {/* Step 1: Selecting the Domain */}
           <Box>
             <FormLabel htmlFor="domain">Step 1: Selecting the Domain</FormLabel>
-            <SimpleGrid columns={3} spacing={5}>
+            <SimpleGrid columns={[1, null, 3]} spacing={5}>
               {["healthtech", "banking", "retail"].map((domain) => (
                 <Box key={domain} borderWidth="1px" borderRadius="md" p={5} boxShadow="md" bg={selectedDomain === domain ? "blue.100" : "white"} onClick={() => setSelectedDomain(domain)} cursor="pointer">
                   <Text textAlign="center">{domain.charAt(0).toUpperCase() + domain.slice(1)}</Text>
@@ -34,7 +34,7 @@ const Index = () => {
           {/* Step 3: Data Specification */}
           <Box>
             <FormLabel htmlFor="data">Step 3: Data Specification</FormLabel>
-            <SimpleGrid columns={3} spacing={5}>
+            <SimpleGrid columns={[1, null, 3]} spacing={5}>
               {["upload", "connect", "synthetic"].map((method) => (
                 <Box key={method} borderWidth="1px" borderRadius="md" p={5} boxShadow="md" bg={selectedDataMethod === method ? "green.100" : "white"} onClick={() => setSelectedDataMethod(method)} cursor="pointer">
                   <Text textAlign="center">{method.charAt(0).toUpperCase() + method.slice(1)} Dataset</Text>
